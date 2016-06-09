@@ -382,6 +382,13 @@ class HintManager(QObject):
             label: The label QWebElement.
         """
         rect = elem.rect_on_view(adjust_zoom=False, no_js=True)
+        js_rect = elem.rect_on_view(adjust_zoom=False)
+
+        log.misc.debug("-----> Element {!r}".format(elem))
+        log.misc.debug("rect: {!r}".format(rect))
+        log.misc.debug("js_rect: {!r}".format(js_rect))
+        log.misc.debug("")
+
         left = rect.x()
         top = rect.y()
         log.hints.vdebug("Drawing label '{!r}' at {}/{} for element '{!r}'"
