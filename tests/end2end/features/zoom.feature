@@ -72,3 +72,12 @@ Feature: Zooming in and out
     Scenario: Setting zoom with argument and count
         When I run :zoom 50 with count 60
         Then the error "Both count and argument given!" should be shown
+
+    # https://github.com/The-Compiler/qutebrowser/issues/390
+    Scenario: Setting default zoom after closing tab
+        When I set ui -> default-zoom to 120%
+        And I open data/numbers/1.txt
+        And I open data/numbers/2.txt in a new tab
+        And I run :tab-close
+        When I set ui -> default-zoom to 130%
+        Then no crash should happen
