@@ -114,11 +114,6 @@ class WebView(QWebView):
         self._set_bg_color()
         cfg = objreg.get('config')
         cfg.changed.connect(self.init_neighborlist)
-        # For some reason, this signal doesn't get disconnected automatically
-        # when the WebView is destroyed on older PyQt versions.
-        # See https://github.com/The-Compiler/qutebrowser/issues/390
-        self.destroyed.connect(functools.partial(
-            cfg.changed.disconnect, self.init_neighborlist))
         self.cur_url = QUrl()
         self.progress = 0
         self.registry = objreg.ObjectRegistry()
