@@ -1,11 +1,11 @@
 --pre
-ebb-lint
+# ebb-lint
 flake8
 flake8-copyright
 flake8-debugger
 flake8-deprecated
 flake8-docstrings
-flake8-future-import
+# flake8-future-import
 flake8-mock
 flake8-pep3101
 flake8-string-format
