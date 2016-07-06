@@ -4,36 +4,36 @@ language: generic
 
 matrix:
   include:
-    - os: linux
-      env: TESTENV=py34-cov
-    - os: linux
-      env: DOCKER=debian-jessie
-      services: docker
-    - os: linux
-      env: DOCKER=archlinux
-      services: docker
-    - os: linux
-      env: DOCKER=ubuntu-wily
-      services: docker
-    - os: linux
-      env: DOCKER=ubuntu-xenial
-      services: docker
-    - os: osx
-      env: TESTENV=py35
-    - os: linux
-      env: TESTENV=pylint
-    - os: linux
-      env: TESTENV=flake8
-    - os: linux
-      env: TESTENV=docs
-    - os: linux
-      env: TESTENV=vulture
-    - os: linux
-      env: TESTENV=misc
-    - os: linux
-      env: TESTENV=pyroma
-    - os: linux
-      env: TESTENV=check-manifest
+    # - os: linux
+    #   env: TESTENV=py34-cov
+    # - os: linux
+    #   env: DOCKER=debian-jessie
+    #   services: docker
+    # - os: linux
+    #   env: DOCKER=archlinux
+    #   services: docker
+    # - os: linux
+    #   env: DOCKER=ubuntu-wily
+    #   services: docker
+    # - os: linux
+    #   env: DOCKER=ubuntu-xenial
+    #   services: docker
+    # - os: osx
+    #   env: TESTENV=py35
+    # - os: linux
+    #   env: TESTENV=pylint
+    # - os: linux
+    #   env: TESTENV=flake8
+    # - os: linux
+    #   env: TESTENV=docs
+    # - os: linux
+    #   env: TESTENV=vulture
+    # - os: linux
+    #   env: TESTENV=misc
+    # - os: linux
+    #   env: TESTENV=pyroma
+    # - os: linux
+    #   env: TESTENV=check-manifest
     - os: linux
       env: TESTENV=eslint
   allow_failures:
