@@ -258,6 +258,12 @@ def github_upload(artifacts, tag):
         asset.edit(filename, description)
 
 
+def pypi_upload(artifacts):
+    """Upload the given artifacts to PyPI using twine."""
+    filenames = [a[0] for a in artifacts]
+    subprocess.check_call(['twine', 'upload'] + filenames)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--asciidoc', help="Full path to python and "
@@ -268,6 +274,8 @@ def main():
                         nargs=1, required=False, metavar='TAG')
     args = parser.parse_args()
     utils.change_cwd()
+
+    upload_to_pypi = False
 
     if os.name == 'nt':
         if sys.maxsize > 2**32:
@@ -285,9 +293,12 @@ def main():
         artifacts = build_osx()
     else:
         artifacts = build_sdist()
+        upload_to_pypi = True
 
     if args.upload is not None:
         github_upload(artifacts, args.upload)
+        if upload_to_pypi:
+            pypi_upload(artifacts)
 
 
 if __name__ == '__main__':
