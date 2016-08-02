@@ -172,7 +172,7 @@ def build_windows():
     os.rename(origin, builddir)
     shutil.make_archive(name, 'zip', 'build', basedirname)
     shutil.rmtree(builddir)
-    artifacts.append((os.path.join('build', '{}.zip'.format(name)),
+    artifacts.append(('{}.zip'.format(name),
                       'application/zip',
                       'Windows 32bit standalone'))
 
@@ -183,7 +183,7 @@ def build_windows():
     os.rename(origin, builddir)
     shutil.make_archive(name, 'zip', 'build', basedirname)
     shutil.rmtree(builddir)
-    artifacts.append((os.path.join('build', '{}.zip'.format(name)),
+    artifacts.append(('{}.zip'.format(name),
                       'application/zip',
                       'Windows 64bit standalone'))
 
