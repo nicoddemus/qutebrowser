@@ -296,6 +296,8 @@ def main():
         upload_to_pypi = True
 
     if args.upload is not None:
+        utils.print_title("Press enter to release...")
+        input()
         github_upload(artifacts, args.upload)
         if upload_to_pypi:
             pypi_upload(artifacts)
