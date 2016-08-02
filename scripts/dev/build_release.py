@@ -172,7 +172,8 @@ def build_windows():
     os.rename(origin, builddir)
     shutil.make_archive(name, 'zip', 'build', basedirname)
     shutil.rmtree(builddir)
-    artifacts.append(('{}.zip'.format(name), 'application/zip',
+    artifacts.append((os.path.join('build', '{}.zip'.format(name)),
+                      'application/zip',
                       'Windows 32bit standalone'))
 
     utils.print_title("Zipping 64bit standalone...")
@@ -182,7 +183,8 @@ def build_windows():
     os.rename(origin, builddir)
     shutil.make_archive(name, 'zip', 'build', basedirname)
     shutil.rmtree(builddir)
-    artifacts.append(('{}.zip'.format(name), 'application/zip',
+    artifacts.append((os.path.join('build', '{}.zip'.format(name)),
+                      'application/zip',
                       'Windows 64bit standalone'))
 
     return artifacts
@@ -219,11 +221,11 @@ def build_sdist():
         utils.print_subtitle(ext)
         print('\n'.join(files))
 
+    filename = 'qutebrowser-{}.tar.gz'.format(qutebrowser.__version__)
     artifacts = [
-        ('qutebrowser-{}.tar.gz'.format(qutebrowser.__version__),
-         'application/gzip', 'Source release'),
-        ('qutebrowser-{}.tar.gz.asc'.format(qutebrowser.__version__),
-         'application/pgp-signature', 'Source release - PGP signature'),
+        (os.path.join('dist', filename), 'application/gzip', 'Source release'),
+        (os.path.join('dist', filename + '.asc'), 'application/pgp-signature',
+         'Source release - PGP signature'),
     ]
 
     return artifacts
@@ -254,7 +256,8 @@ def github_upload(artifacts, tag):
 
     for filename, mimetype, description in artifacts:
         with open(filename, 'rb') as f:
-            asset = release.upload_asset(mimetype, filename, f)
+            basename = os.path.basename(filename)
+            asset = release.upload_asset(mimetype, basename, f)
         asset.edit(filename, description)
 
 
@@ -298,7 +301,7 @@ def main():
     if args.upload is not None:
         utils.print_title("Press enter to release...")
         input()
-        github_upload(artifacts, args.upload)
+        github_upload(artifacts, args.upload[0])
         if upload_to_pypi:
             pypi_upload(artifacts)
 
