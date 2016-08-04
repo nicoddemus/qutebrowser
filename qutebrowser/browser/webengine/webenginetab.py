@@ -413,7 +413,14 @@ class WebEngineTab(browsertab.AbstractTab):
 
     def find_all_elements(self, selector, *, only_visible=False):
         log.stub()
+        js_code = javascript.assemble('webelem', 'find_all_elements', selector)
+        self.run_js_async(js_code, self._elem_cb)
         return []
+
+    def _elem_cb(self, elems):
+        for elem in elems:
+            print(elem['id'])
+            self.run_js_async('_qutebrowser_get_element({}).style.backgroundColor = "#FF00FF";'.format(elem['id']))
 
     def _connect_signals(self):
         view = self._widget

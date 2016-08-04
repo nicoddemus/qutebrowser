@@ -474,6 +474,11 @@ class CommandDispatcher:
         url.setPath(new_path)
         self._open(url, tab, background, window)
 
+    @cmdutils.register(instance='command-dispatcher', scope='window')
+    def foobar(self):
+        """foo"""
+        self._current_widget().find_all_elements('a')
+
     @cmdutils.register(instance='command-dispatcher', scope='window',
                        backend=usertypes.Backend.QtWebKit)
     @cmdutils.argument('where', choices=['prev', 'next', 'up', 'increment',
