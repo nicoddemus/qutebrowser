@@ -524,3 +524,11 @@ Feature: Various utility commands.
         Then the following tabs should be open:
             - data/hints/link_blank.html
             - data/hello.txt (active)
+            
+    Scenario: Setting private browsing after opening/closing tabs
+        Given I have a fresh instance
+        When I open data/hello.txt
+        And I open data/hello.txt in a new tab
+        And I run :tab-close
+        And I set general -> private-browsing to true
+        Then no crash should happen
