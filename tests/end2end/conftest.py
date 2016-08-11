@@ -25,11 +25,15 @@ import os
 import shutil
 import pstats
 
-from end2end.fixtures.webserver import httpbin, httpbin_after_test, ssl_server
-from end2end.fixtures.quteprocess import (quteproc_process, quteproc,
-                                          quteproc_new)
-from end2end.fixtures.testprocess import pytest_runtest_makereport
+#from end2end.fixtures.webserver import httpbin, httpbin_after_test, ssl_server
+#from end2end.fixtures.quteprocess import (quteproc_process, quteproc,
+                                          #quteproc_new)
+#from end2end.fixtures.testprocess import pytest_runtest_makereport
 
+pytest_plugins = ['end2end.fixtures.webserver',
+                 'end2end.fixtures.quteprocess',
+                  'end2end.fixtures.quteprocess',
+                 ]
 
 def pytest_configure(config):
     """Remove old profile files."""
