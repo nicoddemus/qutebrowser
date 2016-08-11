@@ -17,10 +17,10 @@ files = [
 # 'tests/unit/misc/test_pastebin.py',
 # 'tests/unit/misc/test_readline.py',
 # 'tests/unit/misc/test_sessions.py',
-  
-  
-  
-  
+
+
+
+
 'tests/unit/misc/test_split.py',
 'tests/unit/misc/test_split_hypothesis.py',
 'tests/unit/utils/test_debug.py',
@@ -34,11 +34,11 @@ files = [
 'tests/unit/utils/test_urlutils.py',
 'tests/unit/utils/test_utils.py',
 'tests/unit/utils/test_version.py',
-  
-  
-  
-  
-  
+
+
+
+
+
 # 'tests/unit/utils/usertypes/test_downloadtarget.py',
 # 'tests/unit/utils/usertypes/test_enum.py',
 # 'tests/unit/utils/usertypes/test_neighborlist.py',
@@ -47,4 +47,4 @@ files = [
 ]
 
 import subprocess
-subprocess.call(['pytest'] + files)
+subprocess.call(['pytest'] + files + ['--color=no'])
