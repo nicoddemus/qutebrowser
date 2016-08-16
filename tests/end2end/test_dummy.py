@@ -1,3 +1,6 @@
+import pytest
 
-def test_dummy():
+
+@pytest.mark.parametrize('i', range(10))
+def test_dummy(i):
     pass
