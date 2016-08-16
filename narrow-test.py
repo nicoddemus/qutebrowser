@@ -46,5 +46,6 @@ files = [
 # 'tests/unit/utils/usertypes/test_timer.py',
 ]
 
-import subprocess
-subprocess.call(['pytest'] + files + ['--color=no'])
+import pytest
+
+pytest.main(files + ['--color=no'])
